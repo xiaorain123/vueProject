@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" ref="mytext">
+        <button @click="handleAdd">add</button>
+        <child ref="mychild"></child>
+    </div>
+</body>
+<script src="../day02/lib/vue-2.4.0.js"></script>
+<script>
+    Vue.component("child",{
+        template:`<div>child</div>`,
+        data () {
+            return {
+                   childname:"子组件名字"
+            }
+        },
+        methods: {
+            add(data){
+                alert("2323"+data)
+            }
+        }
+    })
+    // ref 是 父组件获取子组件的所有属性
+
+    // ref也是一个对象
+    // 在父组件中可以使用 this.$refs  来获取，返回的是一个对象，属性值是子组件
+    var vm = new Vue({
+        el:"#box",
+        data:{
+        
+        },methods: {
+            handleAdd(){
+                console.log("111",this.$refs.mychild.childname);
+                this.$refs.mychild.add("父传子");
+            }
+        }
+    })
+    // 1.ref放在标签上，拿到的是原生节点
+    // 2.ref放在组件上，拿到的是组件对象（这就是为什么ref可以实现父子通信）
+</script>
+</html>

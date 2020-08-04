@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <div id="box">
+          <navbar myname="home" :my-show="true"></navbar>
+          <navbar myname="list"  :my-show="false"></navbar>
+          <navbar :myname="parentname"  :my-show="true"></navbar>
+      </div>
+</body>
+<script src="../day02/lib/vue-2.4.0.js"></script>
+<script>
+    Vue.component("navbar",{
+        template:`<div>
+               <button>返回</button>  {{myname}}
+               <button v-show="myShow">返回</button> 
+        </div>`,
+        // props: ["myname","myShow"]
+        props: {
+            myname:String,
+            myShow:Boolean
+        }
+    })
+    new Vue({
+        el:"#box",
+        data:{
+            parentname:"父组件的状态"
+        }
+    })
+</script>
+</html>

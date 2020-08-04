@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <navbars></navbars>
+        <sidebar></sidebar>
+    </div>
+</body>
+<script src="../day02/lib/vue-2.4.0.js"></script>
+<script>
+    Vue.component("navbars", {
+        template: `<div style="background:yellow">
+            <button @click="handleback()">返回</button>
+            navbar
+            <button>主页</button>
+            <child></child>   
+            <navbarchild></navbarchild>
+            </div>`, 
+        methods: {
+            handleback() {
+                alert("back");
+            },
+            components: {
+               navbarchild:{
+                   template:`<div>navbarchild</div>`
+               }
+            }
+        }
+    })
+    Vue.component("child",{
+        template:"<div>child组件--全局定义</div>"
+    })
+
+    Vue.component("sidebar",{
+        template:`<section>
+            <div style="background:red">
+           sider组件
+           <child></child>    
+        </div><div>111</div>
+            </section>`,
+    })
+    new Vue({
+        el: "#box",
+
+    })
+</script>
+
+</html>
