@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{date|formatDate}}
+    </div>
+</body>
+<script src="../day02/lib/vue-2.4.0.js"></script>
+<script>
+    var padDate = function (value) {
+        return value < 10 ? "0" + value : value;
+    }
+    var app = new Vue({
+        el: "#app",
+        data: {
+            date: new Date()
+        },
+        filters: {
+            formatDate: function (value) {//这里的value是需要过滤的数据
+                var date = value;
+                var year = date.getFullYear();
+                var month = padDate(date.getMonth() + 1);
+                var day = padDate(date.getDate());
+                var hours = padDate(date.getHours());
+                var minutes = padDate(date.getMinutes());
+                var seconds = padDate(date.getSeconds());
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            }
+        },
+        // el挂载到实例上后调用
+        mounted: function () {
+            var _this = this;
+            this.timer = setInterval(function () {
+                _this.date = new Date();
+            }, 1000)
+        },
+        // 在vue销毁前。清除我们的定时器
+        beforeDestroy: function () {
+            if (this.timer) {
+                crearInterval(this.timer)
+            }
+        }
+    })
+</script>
+
+</html>
