@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <button @click="handleClick">+</button>
+        <button @click="handleClick">+</button>
+        <button @click="isShow=!isShow">+</button>
+        <button v-show="isShow">+</button>
+    </div>
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+   var vm = new Vue({
+       el:"#box",
+       data:{
+           isShow:true,
+       },methods: {
+           handleClick(){
+               this.isShow = !this.isShow;
+           }
+       }
+   })
+</script>
+</html>

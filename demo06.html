@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" @input="handleInput()" v-model="mytext">
+        <ul>
+            <li v-for="data in datalist">
+                {{data}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:"#box",
+        data:{
+            mytext:"",
+            datalist:["aaa","bbb","ccc","ddd"],
+            list:["aaa","bbb","ccc","ddd"]
+        },methods: {
+            handleInput(){
+                console.log(this.mytext);
+                var newlist =this.list.filter((item)=>item.indexOf(this.mytext)>-1)
+                console.log(newlist);
+                this.datalist = newlist;
+                // 计算属性来解决该问题
+            }
+        }
+    })
+
+    var arr = [1,23,3,4,5,32,1,2];
+    var newList = arr.filter((item)=>{
+        return item>3;
+    })
+    console.log(newList);
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="vue.js"></script> -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+ 
+<body>
+    <div id="app">
+        <div @click="addMore">加载更多</div>
+        <ul><li v-for="item in filterlist">{{item}}</li></ul>
+        <hr>
+        <ul><li v-for="item in filterlistFun()">{{item}}</li></ul>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data(){
+            return {
+                size:5,
+                list:[
+                    {"id":0,"title":"11111","cont":"111111"},
+                    {"id":1,"title":"22222","cont":"111111"},
+                    {"id":2,"title":"33333","cont":"111111"},
+                    {"id":3,"title":"44444","cont":"111111"},
+                    {"id":4,"title":"55555","cont":"55555"},
+                    {"id":5,"title":"66666","cont":"66666"},
+                    {"id":6,"title":"77777","cont":"77777"},
+                    {"id":7,"title":"77777","cont":"88888"},
+                    {"id":8,"title":"888888","cont":"999999"},
+                    {"id":9,"title":"000000","cont":"99999"},
+                    {"id":10,"title":"a88888","cont":"99999"},
+                    {"id":11,"title":"a22222","cont":"111111"},
+                    {"id":12,"title":"a33333","cont":"111111"},
+                    {"id":13,"title":"a44444","cont":"111111"},
+                    {"id":14,"title":"a55555","cont":"55555"},
+                    {"id":15,"title":"a66666","cont":"66666"},
+                    {"id":16,"title":"a77777","cont":"77777"},
+                    {"id":17,"title":"a77777","cont":"88888"},
+                    {"id":18,"title":"a888888","cont":"999999"},
+                    {"id":19,"title":"a000000","cont":"99999"},
+                    {"id":20,"title":"a88888","cont":"99999"}
+                ]
+            }
+        },
+        computed: {
+            filterlist () {
+                let num=this.size;
+                return this.list.filter(function (number) {
+                    return number.id < num
+                })
+            }
+        },
+        methods:{
+            filterlistFun(val){
+                let num=this.size;
+                return this.list.filter(function (number) {
+                    return number.id < num
+                })
+            },
+            addMore(){
+                this.size+=5;
+            },
+        },
+        mounted(){
+        }
+    })
+</script>
+</html>

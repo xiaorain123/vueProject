@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div id="app">
+         <p>未过滤：{{msg}}</p>
+         <p>全局过滤器：{{msg|demoFilter}}</p>
+         <p>过滤后：{{msg|msgFilter|filter2}}</p>
+         <p>时间为：{{date|dateFilter}}</p>
+         <!-- 把msg作为参数传入msgFilter中  级联的过滤-->
+     </div>
+</body>
+<script src="../day03/node_modules/vue/dist/vue.js"></script>
+<script>
+    // 全局过滤器
+    Vue.filter("demoFilter",function(str){
+        return str+"!!!!"
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            msg:"hello",
+            date:"2020-02-02"
+        },filters: {
+            // 局部过滤器
+            // str参数为msg
+            msgFilter(str){
+                    return str+"world"
+            },
+            // str参数代表为 msg||msgFilter
+            filter2(str){
+                   return str+"!!!"
+            },
+            dateFilter(date){
+                var array =  date.split("-");
+                return `${array[0]}年${array[1]}日${array[2]}日`
+            }
+        }
+    })
+</script>
+</html>

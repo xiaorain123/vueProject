@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <div id="box">
+            <p>计算方法：{{getYouName()}}</p>
+            <p>计算属性：{{getMyName}}</p>
+      </div>
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            myname:"xiaoming"
+        },
+        methods: {
+            getYouName(){
+                return this.myname.substring(0,1).toUpperCase()+this.myname.substring(1);
+            }
+        },
+        computed: {
+            // 逻辑更简洁  计算属性计算过一次之后会把结果缓存下来
+            getMyName(){
+                return this.myname.substring(0,1).toUpperCase()+this.myname.substring(1);
+            }
+        }
+    })
+</script>
+</html>

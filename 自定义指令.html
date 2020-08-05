@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- autofocus="autofocus"  设置自动聚焦 -->
+        <!-- 钩子函数：在不同的时期会自动执行  被绑定元素插入到父节点时进行调用 -->
+        <input type="text"  v-focus/>
+        <div v-red></div>
+    </div>
+</body>
+<script src="../day03/node_modules/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+      el:"#app",
+      data:{
+         
+      },directives: {
+           focus:{
+               inserted(el){
+                   el.focus();
+               }
+           },
+           red:{
+               inserted(el){
+                    el.style.width="100px"
+                    el.style.height="100px"
+                    el.style.backgroundColor="red"
+               }
+           }
+      }
+  })
+
+//   
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="mytext">
+        {{mytext}}
+        <textarea v-model="mytext"></textarea>
+        <br>
+        <input type="checkbox"  v-model="isChecked">记录用户名
+        <p>你喜欢运动吗？
+            <input type="checkbox" value="游泳" v-model="checkgroup">游泳
+            <input type="checkbox" value="滑冰" v-model="checkgroup">滑冰
+            <input type="checkbox" value="蹦极" v-model="checkgroup">蹦极
+        </p>
+         {{checkgroup}}
+         <p>你喜欢运动吗？
+            <input type="radio" value="游泳" v-model="picked">
+            <input type="radio" value="滑冰" v-model="picked">
+            <input type="radio" value="蹦极" v-model="picked">
+        </p>
+         {{picked}}
+    </div>
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+  var  vm = new Vue({
+      el:"#box",
+      data:{
+          mytext:"",
+          isChecked:true,
+
+          checkgroup:[],
+          picked:true
+      }
+  })
+</script>
+</html>

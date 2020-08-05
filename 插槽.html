@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <div slot="zs">插槽的内容</div>
+        </child>
+    </div>
+</body>
+<script src="../day03/node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component("child", {
+        template:`
+           <div>111
+              <slot name="zs"></slot>
+           </div>
+        `
+    })
+    new Vue({
+        el:"#box",
+         
+    })
+</script>
+</html>

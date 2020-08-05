@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            background: red;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .a {
+            color: aqua
+        }
+
+        .b {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <h1 :class="['red', 'thin']">这是一个邪恶的H1</h1>
+        <h1 :style="[h1StyleObj, h1StyleObj2]">这是一个善良的H1</h1>
+        <h1 :class="['red', 'thin', {'active': isActive}]">这是一个邪恶的H1</h1>
+        <h1 :class="{red:true, italic:true, active:true, thin:true}">这是一个邪恶的H1</h1>
+        <div style="background: yellow;"></div>
+        <button @click="handleClick">click</button>
+        <div :class="isActive?'red':'yellow'">我是动态绑定class的三目写法</div>
+        <div :class="classobj">我是动态绑定的class--对象写法</div>
+        <div :class="classarr">我是动态绑定的class--数组写法</div>
+        <div :style="'background:'+(isActive?'red':'yellow')">我是动态绑定style的三木写法</div>
+        <div :style="styleobj">我是动态绑定style的对象写法</div>
+        <div :style="stylearr">我是动态绑定style的数组写法</div>
+    </div>
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            isActive: true,
+            classobj: {
+                a: true,
+                b: true
+            }, classarr: ["a", "b"],
+            styleobj: {
+                backgroundColor: "red"
+                // 不是很好用，最好用动态的
+            }, 
+            stylearr: [],
+            h1StyleObj: { color: 'red', 'font-size': '40px', 'font-weight': '200' },
+            h1StyleObj2: { fontStyle: 'italic' }
+        },
+        methods: {
+            handleClick() {
+                this.isActive = !this.isActive
+            }
+        }
+    })
+    vm.classarr.pop();
+    vm.stylearr.push({ backgroundColor: "yellow" });
+    Vue.set(vm.classobj, "c", true)
+</script>
+
+</html>

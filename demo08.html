@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <button>click</button>
+        <button>click</button>
+        <button>click</button>
+       
+        <ul @click="handleUlClick">
+            <li @click.stop="handleLiClick($event)">111</li>
+            <li @click="handleLiClick">222</li>
+            <li @click="handleLiClick">333</li>
+            <li @click="handleLiClick">444</li>
+        </ul>
+    </div>
+</body>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+       el:"#box",
+       data:{
+          msg:{"name":"zs","age":"14"}
+       },
+       methods: {
+           handleUlClick(ev){
+                console.log(ev.target);
+                console.log("ul click");
+            },
+            handleLiClick(){
+                console.log("li click");
+            }
+       }
+    })
+</script>
+
+</html>
